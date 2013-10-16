@@ -18,11 +18,12 @@ try:
 	json.loads = json.decode
     _ParseError = json.DecodeError
 except ImportError:
-    import jsonlib2 as json
-    _ParseError = json.ReadError
-except ImportError:
-    import json
-    _ParseError = ValueError
+	try:
+    	import jsonlib2 as json
+    	_ParseError = json.ReadError
+	except ImportError:
+    	import json
+    	_ParseError = ValueError
     
 def _raw_body_reader():
     """
